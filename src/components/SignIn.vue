@@ -1,0 +1,51 @@
+<template>
+  <div class="sign-in">
+      <form action="">
+          <label for="username">Username:</label>
+          <input class="box" type="text">
+          <label for="password">Password:</label>
+          <input class= "box" type="text">
+          <div class="buttons">
+            <button type="button" class="btn btn-primary disabled">Sign-In</button>
+            <button type="button" class="btn btn-outline-primary">Register</button>
+          </div>
+      </form>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SignIn"
+};
+</script>
+
+<style scoped>
+.sign-in {
+  margin: 1rem 0 0 0;
+}
+form {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 0 0;
+}
+.box {
+  margin: 0 0.5rem 0 0;
+}
+@media screen and (max-width: 775px) {
+  form {
+    flex-flow: column;
+  }
+  .buttons {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 10rem;
+  }
+  button {
+    margin: 0.5rem;
+  }
+}
+</style>
+
