@@ -6,8 +6,8 @@
           <label for="password">Password:</label>
           <input class= "box" type="text">
           <div class="buttons">
-            <button type="button" class="btn btn-primary disabled">Sign-In</button>
-            <button type="button" class="btn btn-outline-primary">Register</button>
+            <button type="button" @click="signIn()" class="btn btn-primary disabled">Sign-In</button>
+            <button type="button" @click="register()" class="btn btn-outline-primary">Register</button>
           </div>
       </form>
   </div>
@@ -15,7 +15,15 @@
 
 <script>
 export default {
-  name: "SignIn"
+  name: "SignIn",
+  methods: {
+    signIn() {
+      console.log("sign-in function runs");
+    },
+    register() {
+      console.log("register function runs");
+    }
+  }
 };
 </script>
 

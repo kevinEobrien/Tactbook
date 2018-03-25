@@ -8,11 +8,11 @@
 
   <div class="collapse navbar-collapse" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <router-link class="nav-link" to="/">Your Profile<span class="sr-only">(current)</span></router-link>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/profile">Your Profile</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/sign-in">Sign In</router-link>
+        <router-link class="nav-link" to="/add-friends">Add Friends</router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/network">Your Network</router-link>

@@ -1,9 +1,12 @@
 <template>
   <div class="user-card">
         <div class="card mb-3">
-  <h3 class="card-header">Kevin O'Brien</h3>
+  <h3 class="card-header">Kjirsti O'Brien</h3>
   <div class="card-body">
-    <img src="../../static/KevinPic.jpg" alt="Card image">
+      <div class="profile-holder">
+          &nbsp;
+      </div>
+    <!-- <img src="../../static/kjirsti.jpg" alt="Card image"> -->
   </div>
   <div class="card-body">
     <router-link to="/profile" class="card-link">See Profile</router-link>
@@ -35,6 +38,12 @@ img {
   height: 200px;
   width: 200px;
   display: block;
+}
+.profile-holder {
+  width: 100px;
+  height: 100px;
+  background: url(../../static/kjirsti.jpg) center center;
+  background-size: cover;
 }
 @media screen and (max-width: 775px) {
   img {
