@@ -12,21 +12,47 @@
         <label class="share" for="newpost">What would you like to share today?</label>
         <input v-model="post" type="text">
         <button type="button" @click="postToWall" class="btn btn-outline-primary">POST</button>
+        
+       
+
+        <button id="addPhotos" @click="addPhotos" type="button" class="btn btn-outline-primary">ADD PHOTOS</button>
+
+      
+
     </form>
+    
+    <PostModal v-if="showModalB" @close="showModalB= false">
+        <h3 slot="header">Upload Photos</h3>
+    </PostModal>
+    
+    <PhotoModal v-if="showModal" @close="showModal = false"  :urlResponse="urlResponse" :imageUrl1="imageUrl1">
+        <h3 slot="header">Upload Photos</h3>
+    </PhotoModal>
+
     <OldPosts/>
   </div>
 </template>
 
 <script>
 import OldPosts from "@/components/OldPosts";
+import PhotoModal from "@/components/PhotoModal";
+import PostModal from "@/components/PostModal";
 
 export default {
   name: "Profile",
-  components: { OldPosts },
+  components: { OldPosts, PhotoModal, PostModal },
   data() {
     return {
-      post: ""
+      post: "",
+      imageUrl1: "",
+      imageUrl2: "",
+      showModal: false,
+      showModalB: false,
+      urlResponse: ""
     };
+  },
+  mounted() {
+    this.getPosts();
   },
   methods: {
     postToWall() {
@@ -38,26 +64,26 @@ export default {
           body: JSON.stringify({
             customer_id: 1,
             content: `${this.post}`,
-            imageUrl1: "",
-            imageUrl2: "",
+            imageUrl1: `${this.imageUrl1}`,
+            imageUrl2: `${this.imageUrl2}`,
             likes: 0,
             markedAbuse: 0
           }),
           headers: new Headers({
             "Content-Type": "application/json"
           })
-        }).then(response => response.json());
-        //   .then(() => uploadPhoto);
+        })
+          .then(response => response.json())
+          .then(response => console.log(response))
+          .then(response => (this.showmodalB = true))
+          .then(() => (post = ""))
+          .then(() => getPosts());
       }
     },
-    uploadPhoto() {
-      fetch("http://localhost:3000/upload", {
-        method: "POST",
-        body: new FormData(event.target),
-        "Content-type": "multipart/form-data"
-      })
-        .then(response => response.json())
-        .then(response => console.log(response));
+    addPhotos(event) {
+      event.preventDefault;
+      this.showModal = true;
+      let form = document.querySelector("form");
     },
     editProfile() {
       console.log("edit funtion runs");
@@ -65,6 +91,17 @@ export default {
     changeBackground() {
       console.log("background funtion runs");
     }
+  },
+  getPosts() {
+    fetch("http://localhost:3000/post")
+      .then(response => response.json())
+      .then(response => {
+        this.posts = response.post;
+        console.log(this.post);
+      });
+  },
+  close() {
+    this.$emit("close");
   }
 };
 </script>
@@ -92,7 +129,8 @@ h1 {
   /* position: absolute;
   top: 1rem; */
 }
-router-link {
+h3 {
+  color: whitesmoke;
 }
 img {
   width: 6rem;

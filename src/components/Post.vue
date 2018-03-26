@@ -3,18 +3,20 @@
         <div id="each-card" class="card mb-3">
             <div class="card-top">
                 <div>
-                    <img id="thumbnail" src="../../static/KevinPic.jpg" alt="thumbnail">
+                    <img id="thumbnail" v-bind:src="post.profileUrl" alt="thumbnail">
                 </div>
-                <h3 class="card-header">Kevin O'Brien</h3>
+                <h3 class="card-header">{{post.name}}</h3>
             </div>
             <div class="card-body">
-                <h5 class="card-title">This is how you get people to do a double-take.</h5>
+                <h5 class="card-title">{{post.content}}</h5>
             </div>
             <div class="post-pics">
-                <img class="post-pic"  src="../../static/before.jpg" alt="Card image">
-                <img class="post-pic"  src="../../static/After.jpg" alt="Card image">
+                <img class="post-pic" v-bind:src="post.imageUrl1" alt="Card image">
+                <img class="post-pic"  v-bind:src="post.imageUrl2" alt="Card image">
+                <!-- ../../static/before.jpg -->
             </div>
                 <div class="card-body">
+                    <label for="heart">{{post.likes}}</label>
                     <img @click="loveIt()" id="heart" src="../../static/heart.png" alt="heart">
                     <a href="#" class="card-link">Comment Placeholder</a>
                     <button type="button" @click="reportAbuse()" class="btn btn-outline-danger">Report Abuse</button>
@@ -32,6 +34,7 @@
 <script>
 export default {
   name: "Post",
+  props: ["getPosts", "post"],
   methods: {
     loveIt() {
       console.log("loveIt function is running");
@@ -39,6 +42,11 @@ export default {
     reportAbuse() {
       console.log("report abuse funtion runs");
     }
+  },
+  data() {
+    return {
+      thumbnailImage: post.profileUrl
+    };
   }
 };
 </script>

@@ -1,10 +1,11 @@
 <template>
   <div class="old-posts">
       <ul>
-          <li>
-              <Post/>
+          <li v-for="post in posts" :key="post.id">
+              <Post :post="post"/>
           </li>
       </ul>
+      <!-- <button type="button" @click="getPosts()"> Test Button</button> -->
   </div>
 </template>
 
@@ -13,7 +14,25 @@ import Post from "@/components/Post";
 
 export default {
   name: "OldPosts",
-  components: { Post }
+  components: { Post },
+  data() {
+    return {
+      posts: []
+    };
+  },
+  methods: {
+    getPosts() {
+      fetch("http://localhost:3000/post")
+        .then(response => response.json())
+        .then(response => {
+          this.posts = response.post;
+          console.log(this.post);
+        });
+    }
+  },
+  mounted() {
+    this.getPosts();
+  }
 };
 </script>
 
