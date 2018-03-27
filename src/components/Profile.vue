@@ -19,8 +19,8 @@
 
     </form>
     
-    <PostModal v-if="showModalB" @close="showModalB= false" :serverResponse="serverResponse">
-        <h3 slot="header">Upload Photos</h3>
+    <PostModal v-if="showModalB" @close="showModalB= false" v-model="serverResponse">
+        <h3 slot="header">{{this.serverResponse}}</h3>
     </PostModal>
     
     <PhotoModal v-if="showModal" @close="showModal = false"  :urlResponse="urlResponse" :imageUrl1="imageUrl1">
@@ -46,7 +46,8 @@ export default {
       imageUrl2: "",
       showModal: false,
       showModalB: false,
-      urlResponse: ""
+      urlResponse: "",
+      serverResponse: ""
     };
   },
   mounted() {
@@ -72,13 +73,14 @@ export default {
           })
         })
           .then(response => response.json())
-          .then(response => alert(response))
+          .then(response => (this.serverResponse = response))
           .then(() => (this.post = ""))
+          .then(() => (this.showModalB = true))
           .then(() => getPosts())
           .then(response => (urlResponse = reponse))
           .then(response => console.log(urlResponse))
           //   .then(response => (this.serverResponse = response))
-          .then(response => (this.showmodalB = true))
+
           .then(() => (this.post = ""));
         //   .then(() => this.getPosts());
       }
@@ -133,7 +135,9 @@ h1 {
   top: 1rem; */
 }
 h3 {
-  color: whitesmoke;
+  color: #008cbd;
+  font-size: 5rem;
+  text-shadow: 2px 2px whitesmoke;
 }
 img {
   width: 6rem;
