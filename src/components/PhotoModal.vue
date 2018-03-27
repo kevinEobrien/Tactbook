@@ -7,10 +7,10 @@
 	        </slot>
 	      </header>
           <div class="modal-body">
-                <form type="multipart/form-data">
+                <form>
                     <label for="">Add Your Image Here</label>
                     <input type="file" name="image" id="image">
-                    <input @submit="uploadPhoto()" type="submit" name="submit" id="submit" value="Upload">
+                    <input  type="submit" name="submit" id="submit" value="Upload">
                 </form>
           </div>
 	       <footer class="modal-footer">
@@ -30,25 +30,25 @@ export default {
   methods: {
     close() {
       this.$emit("close");
+    },
+    uploadPhoto(event) {
+      event.preventDault();
+      fetch("http://localhost:3000/upload", {
+        method: "POST",
+        body: new FormData(event.target),
+        "Content-type": "multipart/form-data"
+      })
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .then((urlResponse = response))
+        .then((imageUrl1 = urlResponse))
+        .then(console.log(imageUrl1));
     }
   },
   data() {
     return {
       urlResponse: ""
     };
-  },
-  uploadPhoto(event) {
-    event.preventDefault();
-    fetch("http://localhost:3000/upload", {
-      method: "POST",
-      body: new FormData(event.target),
-      "Content-type": "multipart/form-data"
-    })
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .then((urlResponse = response))
-      .then((imageUrl1 = urlResponse))
-      .then(console.log(imageUrl1));
   }
 };
 </script>

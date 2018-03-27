@@ -17,11 +17,9 @@
 
         <button id="addPhotos" @click="addPhotos" type="button" class="btn btn-outline-primary">ADD PHOTOS</button>
 
-      
-
     </form>
     
-    <PostModal v-if="showModalB" @close="showModalB= false">
+    <PostModal v-if="showModalB" @close="showModalB= false" :serverResponse="serverResponse">
         <h3 slot="header">Upload Photos</h3>
     </PostModal>
     
@@ -74,10 +72,15 @@ export default {
           })
         })
           .then(response => response.json())
-          .then(response => console.log(response))
+          .then(response => alert(response))
+          .then(() => (this.post = ""))
+          .then(() => getPosts())
+          .then(response => (urlResponse = reponse))
+          .then(response => console.log(urlResponse))
+          //   .then(response => (this.serverResponse = response))
           .then(response => (this.showmodalB = true))
-          .then(() => (post = ""))
-          .then(() => getPosts());
+          .then(() => (this.post = ""));
+        //   .then(() => this.getPosts());
       }
     },
     addPhotos(event) {
@@ -97,7 +100,7 @@ export default {
       .then(response => response.json())
       .then(response => {
         this.posts = response.post;
-        console.log(this.post);
+        console.log(this.posts);
       });
   },
   close() {

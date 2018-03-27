@@ -26,7 +26,7 @@ export default {
         .then(response => response.json())
         .then(response => {
           this.posts = response.post;
-          console.log(this.post);
+          console.log("getPosts response is", response);
         });
     }
   },
@@ -48,6 +48,24 @@ ul {
 li {
   margin: 1rem 0rem 1rem 0rem;
   padding: 0;
+}
+@media screen and (min-width: 1000px) {
+  ul {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+  }
+  li {
+    margin: 0.2rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  li {
+    width: 100vw;
+  }
+  ul {
+    padding: 0;
+  }
 }
 </style>
 

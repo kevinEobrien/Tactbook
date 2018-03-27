@@ -11,9 +11,9 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/profile">Your Profile</router-link>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link class="nav-link" to="/add-friends">Add Friends</router-link>
-      </li>
+      </li> -->
       <li class="nav-item">
         <router-link class="nav-link" to="/network">Your Network</router-link>
       </li>

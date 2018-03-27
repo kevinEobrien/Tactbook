@@ -12,20 +12,20 @@
             </div>
             <div class="post-pics">
                 <img class="post-pic" v-bind:src="post.imageUrl1" alt="Card image">
-                <img class="post-pic"  v-bind:src="post.imageUrl2" alt="Card image">
+                <img class="post-pic"  v-bind:src="post.imageUrl2" alt="">
                 <!-- ../../static/before.jpg -->
             </div>
                 <div class="card-body">
                     <label for="heart">{{post.likes}}</label>
                     <img @click="loveIt()" id="heart" src="../../static/heart.png" alt="heart">
-                    <a href="#" class="card-link">Comment Placeholder</a>
+                    <a href="#" class="card-link"></a>
                     <button type="button" @click="reportAbuse()" class="btn btn-outline-danger">Report Abuse</button>
                 </div>
             <div id="comments" class="card-footer text-muted">
-                <div class="thumbnail-container">
-                <!-- <img id="thumbnail" src="../../static/kjirsti.jpg" alt="commenter-thumbnail">  -->
+                <!-- <div class="thumbnail-container">
+                <img id="thumbnail" src="../../static/kjirsti.jpg" alt="commenter-thumbnail">
                 </div>
-                <p class="comment">I thought I would never see your face again!</p>
+                <p class="comment">I thought I would never see your face again!</p> -->
             </div>
         </div>
   </div>
@@ -35,18 +35,36 @@
 export default {
   name: "Post",
   props: ["getPosts", "post"],
-  methods: {
-    loveIt() {
-      console.log("loveIt function is running");
-    },
-    reportAbuse() {
-      console.log("report abuse funtion runs");
-    }
-  },
   data() {
     return {
-      thumbnailImage: post.profileUrl
+      thumbnailImage: post.profileUrl,
+      apiURL: "http://localhost:3000/post/",
+      comment: ""
     };
+  },
+  methods: {
+    reportAbuse() {
+      console.log("report abuse function runs");
+    },
+    loveIt() {
+      console.log(this.apiURL + this.post.id);
+      //     fetch(this.apiURL + post +this.post.id, {
+      //       method: "put",
+      //       headers: new Headers({ "Content-Type": "application/json" }),
+      //       body: JSON.stringify(this.submission)
+      //     })
+      //       .then(() => console.log("updated!!! "))
+      //       .then(() => this.getPosts());
+      // }
+    },
+    getComments() {
+      fetch("http://localhost:3000/comment")
+        .then(response => response.json())
+        .then(response => {
+          this.comments = response.post.body;
+          console.log(this.post);
+        });
+    }
   }
 };
 </script>
@@ -118,6 +136,15 @@ export default {
   }
   .thumbnail-container {
     display: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #each-card {
+    width: 45vw;
+    margin: 0.5rem;
+  }
+  .postcard {
+    width: 45vw;
   }
 }
 </style>
