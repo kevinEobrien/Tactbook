@@ -19,17 +19,17 @@
 <script>
 export default {
   name: "PostModal",
-  props: ["serverResponse"],
+  props: ["getPosts"],
   methods: {
     close() {
-      this.$emit("close");
+      this.$router.go();
     }
-  },
-  data() {
-    return {
-      serverResponse: ""
-    };
   }
+  //   data() {
+  //     return {
+  //       serverResponse: ""
+  //     };
+  //   }
 };
 </script>
 

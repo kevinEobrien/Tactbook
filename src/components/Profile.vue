@@ -19,11 +19,11 @@
 
     </form>
     
-    <PostModal v-if="showModalB" @close="showModalB= false" v-model="serverResponse">
+    <PostModal v-if="showModalB" @close="showModalB= false" :getPosts="getPosts">
         <h3 slot="header">{{this.serverResponse}}</h3>
     </PostModal>
     
-    <PhotoModal v-if="showModal" @close="showModal = false"  :urlResponse="urlResponse" :imageUrl1="imageUrl1">
+    <PhotoModal v-if="showModal" @close="showModal = false"  :urlResponse="urlResponse" :post="post" :postToWall="postToWall">
         <h3 slot="header">Upload Photos</h3>
     </PhotoModal>
 
@@ -46,8 +46,8 @@ export default {
       imageUrl2: "",
       showModal: false,
       showModalB: false,
-      urlResponse: "",
-      serverResponse: ""
+      serverResponse: "",
+      posts: []
     };
   },
   mounted() {
@@ -58,7 +58,7 @@ export default {
       if (this.post === "") {
         alert("Please enter text in your post.");
       } else {
-        fetch("http://localhost:3000/post", {
+        fetch("https://tactbook-api.herokuapp.com/post", {
           method: "post",
           body: JSON.stringify({
             customer_id: 1,
@@ -74,15 +74,9 @@ export default {
         })
           .then(response => response.json())
           .then(response => (this.serverResponse = response))
+          .then(() => this.getPosts())
           .then(() => (this.post = ""))
-          .then(() => (this.showModalB = true))
-          .then(() => getPosts())
-          .then(response => (urlResponse = reponse))
-          .then(response => console.log(urlResponse))
-          //   .then(response => (this.serverResponse = response))
-
-          .then(() => (this.post = ""));
-        //   .then(() => this.getPosts());
+          .then(() => (this.showModalB = true));
       }
     },
     addPhotos(event) {
@@ -95,18 +89,17 @@ export default {
     },
     changeBackground() {
       console.log("background funtion runs");
+    },
+    getPosts() {
+      fetch("https://tactbook-api.herokuapp.com/post")
+        .then(response => response.json())
+        .then(response => {
+          this.posts = response.post;
+        });
+    },
+    close() {
+      this.$emit("close");
     }
-  },
-  getPosts() {
-    fetch("http://localhost:3000/post")
-      .then(response => response.json())
-      .then(response => {
-        this.posts = response.post;
-        console.log(this.posts);
-      });
-  },
-  close() {
-    this.$emit("close");
   }
 };
 </script>

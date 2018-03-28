@@ -14,12 +14,12 @@ import Header from "@/components/Header";
 
 export default {
   name: "App",
-  components: { Header },
-  data() {
-    return {
-      post: ""
-    };
-  }
+  components: { Header }
+  // data() {
+  //   return {
+  //     post: ""
+  //   };
+  // }
 };
 </script>
 

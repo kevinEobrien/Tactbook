@@ -11,7 +11,7 @@
                 <h5 class="card-title">{{post.content}}</h5>
             </div>
             <div class="post-pics">
-                <img class="post-pic" v-bind:src="post.imageUrl1" alt="Card image">
+                <img class="post-pic" v-bind:src="post.imageUrl1" alt="">
                 <img class="post-pic"  v-bind:src="post.imageUrl2" alt="">
                 <!-- ../../static/before.jpg -->
             </div>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       thumbnailImage: post.profileUrl,
-      apiURL: "http://localhost:3000/post/",
+      apiURL: "https://tactbook-api.herokuapp.com/post",
       comment: ""
     };
   },
@@ -58,7 +58,7 @@ export default {
       // }
     },
     getComments() {
-      fetch("http://localhost:3000/comment")
+      fetch("https://tactbook-api.herokuapp.com/comment")
         .then(response => response.json())
         .then(response => {
           this.comments = response.post.body;
