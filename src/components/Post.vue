@@ -93,7 +93,8 @@ h3 {
 .post-pics {
   display: flex;
   flex-flow: row;
-  width: 80vw;
+  align-items: center;
+  justify-content: center;
 }
 .post-pic {
   max-width: 33vw;
