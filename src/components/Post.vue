@@ -1,11 +1,15 @@
 <template>
   <div class="postcard">
         <div id="each-card" class="card mb-3">
-            <div class="card-top">
-                <div>
-                    <img id="thumbnail" v-bind:src="post.profileUrl" alt="thumbnail">
+            <div class="top-wrapper">
+                <div class="card-top">
+                    <div class="top-wrapper">
+                        <div id="thumb-div">
+                            <img id="thumbnail" v-bind:src="post.profileUrl" alt="thumbnail">
+                        </div>
+                        <h3 class="card-header">{{post.name}}</h3>
+                    </div>
                 </div>
-                <h3 class="card-header">{{post.name}}</h3>
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{post.content}}</h5>
@@ -75,6 +79,10 @@ export default {
   max-width: 80vw;
   margin: 0;
 }
+h3 {
+  padding: 0.75rem;
+  font-size: 1rem;
+}
 #each-card {
   max-width: 80vw;
   width: 80vw;
@@ -116,9 +124,17 @@ export default {
 
   display: block;
   border-radius: 50%;
-  margin: 2rem 1rem 2rem 1rem;
+  margin: 0.3rem 0.3rem 0.3rem 0.3rem;
   overflow: hidden;
   text-align: center;
+}
+#thumb-div {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.top-wrapper {
+  display: flex;
+  flex-flow: row;
 }
 #comments {
   display: flex;

@@ -168,6 +168,11 @@ input {
     height: 50vh;
   }
 }
+@media screen and (max-width: 800px) {
+  h3 {
+    font-size: 3rem;
+  }
+}
 @media screen and (max-height: 500px) {
   .jumbotron {
     height: 100vh;
