@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getPosts() {
-      fetch("http://localhost:3000/post")
+      fetch("https://tactbook-api.herokuapp.com/post")
         .then(response => response.json())
         .then(response => {
           this.posts = response.post;
