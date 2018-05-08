@@ -1,11 +1,11 @@
 <template>
   <div class="sign-in">
       <form action="">
-          <input class="box" type="text" placeholder="Username">
-          <input class= "box" type="text" placeholder="Password">
+          <input class="box" type="text" placeholder="JohnDoe">
+          <input class= "box" type="password" placeholder="SecretPassword">
           <div class="buttons">
-            <button type="button" @click="signIn()" class="btn btn-primary disabled">Sign-In</button>
-            <button type="button" @click="register()" class="btn btn-outline-primary">Register</button>
+            <button  type="button" @click.prevent="signIn()" class="btn btn-primary disabled">View Sample Profile</button>
+            <button type="button" @click="register()" class="btn btn-outline-primary">Registration Coming Soon</button>
           </div>
       </form>
   </div>
@@ -17,6 +17,7 @@ export default {
   methods: {
     signIn() {
       console.log("sign-in function runs");
+      this.$router.push("/profile");
     },
     register() {
       console.log("register function runs");

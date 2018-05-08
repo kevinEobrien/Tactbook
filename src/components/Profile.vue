@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <div class="jumbotron">
-        <button id="change-background" @click="changeBackground()" type="button" class="btn btn-outline-secondary">Change Background</button>
+        <!-- <button id="change-background" @click="changeBackground()" type="button" class="btn btn-outline-secondary">Change Background</button> -->
         <h1>Kevin O'Brien</h1>
         <div class="lower-left">
             <img src="../../static/KevinPic.jpg" alt="profile pic">

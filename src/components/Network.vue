@@ -9,7 +9,12 @@
 import NetworkList from "@/components/NetworkList";
 export default {
   name: "Network",
-  components: { NetworkList }
+  components: { NetworkList },
+  methods: {
+    getNetwork () {
+      fetch()
+    }
+  }
 };
 </script>
 
